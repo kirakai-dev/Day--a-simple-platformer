@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2mvx4a1on4e1"]
+[gd_scene load_steps=14 format=3 uid="uid://b2mvx4a1on4e1"]
 
 [ext_resource type="Script" uid="uid://drky2v8j4u3pv" path="res://scripts/slime.gd" id="1_n6pvg"]
 [ext_resource type="Texture2D" uid="uid://w3eujd0lrqip" path="res://assets/sprites/slime_purple.png" id="1_p2gj0"]
@@ -20,6 +20,22 @@ region = Rect2(48, 24, 24, 24)
 atlas = ExtResource("1_p2gj0")
 region = Rect2(72, 24, 24, 24)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6pvg"]
+atlas = ExtResource("1_p2gj0")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v5wyi"]
+atlas = ExtResource("1_p2gj0")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l8pv"]
+atlas = ExtResource("1_p2gj0")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vnioy"]
+atlas = ExtResource("1_p2gj0")
+region = Rect2(0, 0, 24, 24)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_v5wyi"]
 animations = [{
 "frames": [{
@@ -38,6 +54,23 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6pvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v5wyi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l8pv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vnioy")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0l8pv"]
@@ -49,13 +82,15 @@ script = ExtResource("1_n6pvg")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_v5wyi")
+animation = &"die"
 autoplay = "default"
-frame_progress = 0.321638
+frame = 3
+frame_progress = 0.372376
 
 [node name="Kill Zone" parent="." instance=ExtResource("2_n6pvg")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Kill Zone"]
-position = Vector2(0, -6.5)
+position = Vector2(0, -6)
 shape = SubResource("RectangleShape2D_0l8pv")
 
 [node name="RayCastRight" type="RayCast2D" parent="."]
@@ -65,3 +100,9 @@ target_position = Vector2(5, 0)
 [node name="RayCastLeft" type="RayCast2D" parent="."]
 position = Vector2(0, -6)
 target_position = Vector2(-5, 0)
+
+[node name="RayCastUp" type="RayCast2D" parent="."]
+position = Vector2(0, -6)
+target_position = Vector2(0, -11)
+
+[node name="Timer" type="Timer" parent="."]

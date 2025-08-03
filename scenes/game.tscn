@@ -363,7 +363,7 @@ theme_override_colors/font_color = Color(0.151858, 0.726904, 0.850463, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("7_u5sy4")
 theme_override_font_sizes/font_size = 8
-text = "Don't touch it..."
+text = "Jump on it!"
 
 [node name="Label4" type="Label" parent="Text"]
 offset_left = 2.0
@@ -388,3 +388,6 @@ theme_override_font_sizes/font_size = 8
 text = "You finshed Level One!
 You should be proud of yourself.
 But there is more to come..."
+
+[node name="Slime2" parent="." instance=ExtResource("5_p57ef")]
+position = Vector2(-40, 32)
