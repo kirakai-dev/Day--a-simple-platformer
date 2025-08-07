@@ -1,7 +1,7 @@
 extends Node2D
 
 var direction = 1
-
+var kills = 0
 const speed = 60
 
 @onready var ray_cast_right: RayCast2D = $RayCastRight
@@ -23,6 +23,9 @@ func _process(delta):
 		animated_sprite.flip_h = false
 	position.x += direction * speed * delta
 	if ray_cast_up.is_colliding():
+		print("+1 Kills")
+		kills += 1
+		print(kills)
 		queue_free()
 
 func _on_timer_timeout() -> void:
